@@ -45,7 +45,6 @@ adminRouter.get("/admin/get-products", admin, async (req, res) => {
         // return products to client
 
         res.json(products);
-        zz;
     } catch (e) {
         res.status(500).json({ error: e.message });
     }
