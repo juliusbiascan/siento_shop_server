@@ -3,6 +3,7 @@ const adminRouter = express.Router();
 const admin = require("../middlewares/admin");
 const { Product } = require("../models/product");
 const Order = require("../models/order");
+
 // adding product
 // you can add all the middlewares here just add them by commas in post method
 adminRouter.post("/admin/add-product", admin, async (req, res) => {

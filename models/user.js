@@ -13,11 +13,7 @@ const userSchema = mongoose.Schema({
         trim: true,
         validate: {
             validator: (value) => {
-                /*    
-            const re =/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;   
-            // const re = /^\S+@\S+\.\S+$/;
-           
-           */
+
                 const re =
                     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
 
@@ -32,16 +28,16 @@ const userSchema = mongoose.Schema({
     password: {
         required: true,
         type: String,
-        /*
-            validate :  {
-                validator : (value) => {
-                    const re =/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\ ]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-                
-                    return value.length > 6;
-                },
-                message : 'Please enter a longer paswword',
+
+        validate: {
+            validator: (value) => {
+                const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\ ]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+                return value.length > 6;
             },
-        */
+            message: 'Please enter a longer paswword',
+        },
+
     },
 
     address: {

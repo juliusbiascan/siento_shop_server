@@ -1,32 +1,25 @@
-//MongoDB
-//username : akr2803
-//pwd      : rajput?283
-
-// IMPORTS FROM PACKAGES
 const express = require("express");
 const mongoose = require("mongoose");
-
-// IMPORTS FROM OTHER FILES
+const cors = require('cors');
 const authRouter = require("./routes/auth");
 const adminRouter = require("./routes/admin");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
 
+require('dotenv').config();
+
 const PORT = process.env.PORT || 3000;
 const app = express();
-const DB =
-    "mongodb+srv://siento-admin:DXURtSSD57Fk4WHb@cluster0.eligyhn.mongodb.net/?retryWrites=true&w=majority";
+const DB = process.env.DATABASE_URL;
 
-// middleware
-// CLIENT -> middleware -> SERVER -> CLIENT
-
+app.use(cors());
 app.use(express.json());
+
 app.use(authRouter);
 app.use(adminRouter);
 app.use(productRouter);
 app.use(userRouter);
 
-// Connecting DB
 mongoose
     .connect(DB)
     .then(() => {
@@ -34,9 +27,7 @@ mongoose
     })
     .catch((e) => console.log(e));
 
-//CREATING AN API
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
     console.log(`Listening at PORT ${PORT}`);
 });
 
-// GET, PUT, POST, DELETE, UPDATE -> CRUD
